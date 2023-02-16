@@ -13,7 +13,6 @@ def login(username_data, passwords_data, username):
         login(username_data, passwords_data, username)
 
     password = passwords_data[username_idx - 1]
-    print("---------Login---------")
     password_input = input("Enter your password : ") + "\n"
 
     if password_input == password:
@@ -40,7 +39,6 @@ def register(un, ulines, plines, data):
             username = input("Invalid username, please try again : ")
         register(username.lower(), ulines, plines)
     else:
-        print("---------Register---------")
         password = input("Enter a new password : ")
         while len(password) < 4:
             password = input("Your password needs to be at least 4 character long ! Please try again :")
