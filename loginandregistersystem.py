@@ -1,5 +1,11 @@
-import sys
-
+try:
+    import sys
+    print("Sys imported successfully.")
+    imported_sys = True
+except:
+    print("Failed to import sys.")
+    imported_sys = False
+    
 userdata = ["", ""]
 
 
@@ -143,7 +149,10 @@ def engine():
         create_files()
     except:
         print("Can't create essentials files, please don't run this program on an online compiler, etc...")
-        sys.exit()
+        if imported_sys:
+            sys.exit()
+        else:
+            quit()
 
     f = open("usernames")
     usernames_data = f.readlines()
