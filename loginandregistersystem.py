@@ -1,18 +1,24 @@
-def login(username_data, passwords_data, username):
+userdata = ["", ""]
+
+
+def login(username_data, passwords_data, username_):
     username_found = False
     username_idx = 0
     for l in username_data:
         line = ""
         for i in range(len(l) - 1):
             line += l[i]
-        if username == line:
+        if username_ == line:
             username_found = True
         username_idx += 1
     if not username_found:
-        username = input("This username doesn't exist, please try again : ")
-        login(username_data, passwords_data, username)
+        username_ = input("This username doesn't exist, please try again : ")
+        login(username_data, passwords_data, username_)
+
+    userdata[0] = username_
 
     password = passwords_data[username_idx - 1]
+    print("---------Login---------")
     password_input = input("Enter your password : ") + "\n"
 
     if password_input == password:
@@ -22,10 +28,12 @@ def login(username_data, passwords_data, username):
             password_input = input("Wrong password, please try again : ") + "\n"
         print("Correct password, guaranteed access.")
 
+    userdata[1] = password_input
 
-def register(un, ulines, plines, data):
+
+def register(un, ulines, plines, data_):
     twin = 0
-    for l in data:
+    for l in data_:
         line = ""
         for i in range(len(l) - 1):
             line += l[i]
@@ -34,11 +42,12 @@ def register(un, ulines, plines, data):
             twin += 1
 
     if twin > 0:
-        username = input("This username already exist, please try again : ")
-        while username == "":
-            username = input("Invalid username, please try again : ")
-        register(username.lower(), ulines, plines)
+        username_ = input("This username already exist, please try again : ")
+        while username_ == "":
+            username_ = input("Invalid username, please try again : ")
+        register(username_.lower(), ulines, plines, data_)
     else:
+        print("---------Register---------")
         password = input("Enter a new password : ")
         while len(password) < 4:
             password = input("Your password needs to be at least 4 character long ! Please try again :")
@@ -48,6 +57,11 @@ def register(un, ulines, plines, data):
         with open('passwords', 'a') as p:
             p.write(password + "\n")
         print("Username + password successfully added to username.txt.")
+
+
+def text_system():
+    # to do
+    pass
 
 
 def engine():
@@ -63,6 +77,12 @@ def engine():
     except:
         open("passwords", "w")
         print("File 'passwords' doesn't exist, new file created.")
+    try:
+        open("text", "r")
+        print("File 'text' successfully opened.")
+    except:
+        open("text", "w")
+        print("File 'text' doesn't exist, new file created.")
 
     f = open("usernames")
     usernames_data = f.readlines()
@@ -93,7 +113,9 @@ def engine():
         while username == "":
             username = input("Invalid username, please try again : ")
         register(username.lower(), ulines, plines, usernames_data)
-    engine()
+        engine()
+
+    text_system()
 
 
 engine()
