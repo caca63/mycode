@@ -64,7 +64,7 @@ def text_system():
     pass
 
 
-def engine():
+def create_files():
     try:
         open("usernames", "r")
         print("File 'usernames' successfully opened.")
@@ -83,6 +83,10 @@ def engine():
     except:
         open("text", "w")
         print("File 'text' doesn't exist, new file created.")
+    
+
+def engine():
+    create_files()
 
     f = open("usernames")
     usernames_data = f.readlines()
