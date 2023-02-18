@@ -1,3 +1,5 @@
+import sys
+
 userdata = ["", ""]
 
 
@@ -137,7 +139,11 @@ def create_files():
 
 
 def engine():
-    create_files()
+    try:
+        create_files()
+    except:
+        print("Can't create essentials files, please don't run this program on an online compiler, etc...")
+        sys.exit()
 
     f = open("usernames")
     usernames_data = f.readlines()
