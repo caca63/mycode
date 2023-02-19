@@ -1,3 +1,7 @@
+
+
+# system ---------------------------------------------------------------------------------------------------------------
+
 try:
     import sys
     print("Sys imported successfully.")
@@ -5,7 +9,7 @@ try:
 except:
     print("Failed to import sys.")
     imported_sys = False
-    
+
 userdata = ["", ""]
 
 
@@ -18,6 +22,8 @@ def login(username_data, passwords_data, username_, t):
             line += l[i]
         if username_ == line:
             username_found = True
+            break
+            break
         username_idx += 1
     if not username_found:
         print("This username doesn't exist, please try again : ")
@@ -25,29 +31,33 @@ def login(username_data, passwords_data, username_, t):
         login(username_data, passwords_data, username_, t)
 
     userdata[0] = username_
+    password = passwords_data[username_idx]
 
-    password = passwords_data[username_idx - 1]
     print("---------Login---------")
     print("Enter your password : ")
+
     password_input = input("-> ") + "\n"
 
     if password_input == password:
         print("Correct password, guaranteed access.")
+
     else:
         while password_input != password:
             print("Wrong password, please try again : ")
             password_input = input("-> ") + "\n"
+
         print("Correct password, guaranteed access.")
 
     userdata[1] = password_input
-
     text_system(username_data, username_idx)
 
 
 def register(un, ulines, plines, data_):
+
     twin = 0
     for l in data_:
         line = ""
+
         for i in range(len(l) - 1):
             line += l[i]
 
@@ -74,6 +84,7 @@ def register(un, ulines, plines, data_):
         with open('passwords', 'a') as p:
             p.write(password + "\n")
         print("Username + password successfully added to username.txt.")
+        engine()
 
 
 def text_system(ud, i):
@@ -120,7 +131,12 @@ def text_system(ud, i):
 
         with open("text", "r") as file:
             data = file.readlines()
-            print(data[username_idx - 1])
+            word = data[username_idx - 1]
+            line = ""
+            for i in range(len(word) - 1):
+                line += word[i]
+
+            print("<<" + line + ">>")
 
 
 def create_files():
@@ -191,7 +207,11 @@ def engine():
         register(username.lower(), ulines, plines, usernames_data)
         engine()
 
+# GUI ------------------------------------------------------------------------------------------------------------------
 
+# to do
+
+# Start ----------------------------------------------------------------------------------------------------------------
 
 
 engine()
