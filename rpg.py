@@ -107,11 +107,12 @@ def botturn():
         print("------------------------------------")
     if bot_choice == 2:
         print("")
-        if ennemy.health < 100:
+        if ennemy.health < 100 and ennemy.health > 0:
             bandage(ennemy)
-            print("------------------------------------")
         else:
-            botturn()
+            attack(player1, ennemy)
+            
+        print("------------------------------------")    
 
 
 
