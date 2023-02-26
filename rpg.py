@@ -18,6 +18,9 @@ class ANSI():
 class Player:
 
     def __init__(self, pseudo, health, damage):
+        
+        pseudo_fix()
+        
         self.pseudo = pseudo
         self.health = health
         self.damage = damage
@@ -27,6 +30,13 @@ class Player:
         print(ANSI.color_text(93), self.pseudo, "joined.")
         print(ANSI.color_text(93), "health : ", self.health)
         print(ANSI.color_text(93), "strength : ", self.damage)
+        
+        
+        
+    def pseudo_fix():
+        while pseudo.lower == "bot":
+            print("Error : your name can't be 'bot' ! Please try again : ")
+            pseudo = input("-> ")
 
     def get_pseudo(self):
         return self.pseudo
@@ -108,7 +118,7 @@ def botturn():
 
 # Game Start -----------------------------------------------------------------------------------------------------------
 
-player1 = Player(input("Choose a pseudo : "), 100, 10)
+player1 = Player(input("Choose a pseudo :\n ->"), 100, 10)
 ennemy = Player("Bot", 100, 10)
 a = 1
 while player1.health > 0 and ennemy.health > 0:
