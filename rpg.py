@@ -19,7 +19,7 @@ class Player:
 
     def __init__(self, pseudo, health, damage):
         
-        pseudo_fix()
+        self.pseudo_fix()
         
         self.pseudo = pseudo
         self.health = health
